@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".contact.KontakActivity"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/fragment_test"
+        class="com.example.kontakdanmaps.contact.DescriptionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"></fragment>
+
+    <Button
+        android:id="@+id/btnChangeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_button"
+        android:text="Pindah fragment"
+        android:textColor="@android:color/white"
+        tools:ignore="ButtonStyle">
+    </Button>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="2"
+        android:padding="@dimen/inner_padding">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nama"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titikDua"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etCariNama"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:inputType="text"
+                android:autofillHints="Input Nama Barang"
+                tools:ignore="LabelFor" />
+
+        </TableRow>
+        <TableRow>
+            <Button
+                android:id="@+id/btnCariKontak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button"
+                android:text="@string/cariKntk"
+                android:textColor="@android:color/white"
+                tools:ignore="ButtonStyle" />
+        </TableRow>
+
+
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/inner_padding">
+        <Button
+            android:id="@+id/btnTambahKontak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button"
+            android:text="@string/tambah"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle">
+        </Button>
+        <Button
+            android:id="@+id/btnEditKontak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button"
+            android:text="@string/edit"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle">
+        </Button>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/inner_padding">
+        <Button
+            android:id="@+id/btnHapusKontak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button"
+            android:text="@string/hps"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle">
+        </Button>
+        <Button
+            android:id="@+id/btnTeleponKontak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_button"
+            android:text="@string/tlpnKntk"
+            android:textColor="@android:color/white"
+            tools:ignore="ButtonStyle" />
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvKontak"
+        android:layout_marginTop="@dimen/inner_padding"/>
+
+</LinearLayout>
