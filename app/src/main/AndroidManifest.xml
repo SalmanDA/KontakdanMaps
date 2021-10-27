@@ -21,6 +21,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".gps.GpsActivity" />
+        <activity android:name=".contact.KontakActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
