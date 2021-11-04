@@ -8,25 +8,6 @@
     tools:context=".contact.KontakActivity"
     android:orientation="vertical">
 
-    <fragment
-        android:id="@+id/fragment_test"
-        class="com.example.kontakdanmaps.contact.DescriptionFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"></fragment>
-
-    <Button
-        android:id="@+id/btnChangeFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_button"
-        android:text="Pindah fragment"
-        android:textColor="@android:color/white"
-        tools:ignore="ButtonStyle">
-    </Button>
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

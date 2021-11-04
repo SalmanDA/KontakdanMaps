@@ -35,9 +35,9 @@ public class KontakActivity extends AppCompatActivity {
     private KontakModels pointerKontak = null;
     private SQLiteDatabase DB;
     private SQLiteOpenHelper Opendb;
-    DescriptionFragment fragmentA = new DescriptionFragment();
-    DescriptionFragment2 fragmentB = new DescriptionFragment2();
+
     private boolean changeFragmentCheck = false;
+    private boolean isDBStop = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class KontakActivity extends AppCompatActivity {
 
         setupItemView();
         setupView();
-        declaceDB();
+        declareDB();
         loadKontak();
 
     }
@@ -62,7 +62,6 @@ public class KontakActivity extends AppCompatActivity {
         btnHapusKontak = findViewById(R.id.btnHapusKontak);
         btnCariKontak = findViewById(R.id.btnCariKontak);
         btnTeleponKontak = findViewById(R.id.btnTeleponKontak);
-        btnChangeFragment = findViewById(R.id.btnChangeFragment);
 
         //ListView
         lvKontak = findViewById(R.id.lvKontak);
@@ -72,7 +71,6 @@ public class KontakActivity extends AppCompatActivity {
         btnHapusKontak.setOnClickListener(hapusKontak);
         btnCariKontak.setOnClickListener(cariKontak);
         btnTeleponKontak.setOnClickListener(teleponKontak);
-        btnChangeFragment.setOnClickListener(changeFragment);
 
     }
 
@@ -88,7 +86,10 @@ public class KontakActivity extends AppCompatActivity {
         });
     }
 
-    private void declaceDB(){
+    private void declareDB(){
+        if(!isDBStop){
+            return;
+        }
         Opendb = new SQLiteOpenHelper(this, "db.sql", null, 1) {
             @Override
             public void onCreate(SQLiteDatabase db) {}
@@ -98,6 +99,7 @@ public class KontakActivity extends AppCompatActivity {
         };
         DB = Opendb.getWritableDatabase();
         DB.execSQL("create table if not exists contact(nama TEXT, noHp TEXT)");
+        isDBStop = false;
     }
 
     @Override
@@ -105,9 +107,11 @@ public class KontakActivity extends AppCompatActivity {
         DB.close();
         Opendb.close();
         super.onStop();
+        isDBStop=true;
     }
 
     private final View.OnClickListener tambahKontak = v -> {
+        if(isDBStop) declareDB();
         AlertDialog.Builder aD = new AlertDialog.Builder(this);
         aD.setTitle("Tambah Kontak");
         v = LayoutInflater.from(this).inflate(R.layout.dialog_tambah, null);
@@ -131,6 +135,7 @@ public class KontakActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener editKontak = v -> {
+        if(isDBStop) declareDB();
         if(pointerKontak == null){
             Toast.makeText(this, "Pilih kontak yang ingin di edit", Toast.LENGTH_LONG).show();
         }
@@ -161,6 +166,7 @@ public class KontakActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener hapusKontak = v -> {
+        if(isDBStop) declareDB();
 
         if(pointerKontak == null){
             Toast.makeText(this, "Pilih kontak yang ingin di hapus", Toast.LENGTH_LONG).show();
@@ -188,6 +194,7 @@ public class KontakActivity extends AppCompatActivity {
     };
 
     private final View.OnClickListener cariKontak = v -> {
+        if(isDBStop) declareDB();
 
         if(etCariNama.getText().toString().trim().length() == 0 ){
             loadKontak();
@@ -203,16 +210,6 @@ public class KontakActivity extends AppCompatActivity {
         Intent callNumber = new Intent(Intent.ACTION_DIAL, number);
 
         startActivity(callNumber);
-    };
-
-    private final View.OnClickListener changeFragment = v -> {
-        if(changeFragmentCheck){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_test, fragmentA).addToBackStack(null).commit();
-        }
-        else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_test, fragmentB).addToBackStack(null).commit();
-        }
-        changeFragmentCheck = !changeFragmentCheck;
     };
 
     private void loadKontak() {
